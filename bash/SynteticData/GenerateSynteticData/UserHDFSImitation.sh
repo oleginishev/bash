@@ -75,10 +75,12 @@ function delete_file() {
     if [ $COL7COUNT -ge 3 ]; then
         DELETEFILE=${column7[$RANDOM % ${#column7[@]}]}
         column7=( "${column7[@]/$DELETEFILE}" )
-        SUUSER=$(echo $EDITFILE | cut -f1 -d:)
-        FULLPATH=$(echo $EDITFILE | cut -f2 -d:)
+        SUUSER=$(echo $DELETEFILE | cut -f1 -d:)
+        FULLPATH=$(echo $DELETEFILE | cut -f2 -d:)
 
-        su - $SUUSER -c "$HDFS_PATH/hdfs dfs -rm -r -f  $FULLPATH"
+	echo $DELETEFILE
+        echo $FULLPATH
+        su - $SUUSER -c "$HDFS_PATH/hdfs dfs -rm -r -f -skipTrash $(dirname $FULLPATH)"
 
         awk -F";" '{for(i=1;i<=NF;i++)if(i!=x)f=f?f FS $i:$i;print f;f=""}' x=7 ./test2.csvBACK2 > ./test2.tmp && mv ./test2.tmp  ./test2.csvBACK2
         awk -va="$(echo "${column7[@]}")" 'BEGIN{OFS=FS=";"; split(a,b," ")}{print $0,b[NR]}' ./test2.csvBACK2  >  ./test2.tmp && mv ./test2.tmp  ./test2.csvBACK2
