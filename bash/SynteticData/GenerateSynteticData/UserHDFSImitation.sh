@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HDFS_PATH="/usr/hdp/3.1.4.0-315/hadoop/bin"
-ACTION=("create" "edit" "delete")
+ACTION_LIST=("create" "edit" "delete")
 GENERATEFILE=genFile.csv
 PREPATH="project"
 #INPUT=./test2.csv
@@ -14,7 +14,7 @@ while read  dir1 dir2 dir3 dir4 dir5 col6 col7
 do
     column0+=($col0)
     arrdir1+=($dir1)
-    arrdir2+=($dir2)        
+    arrdir2+=($dir2)
     arrdir3+=($dir3)
     arrdir4+=($dir4)
     arrdir5+=($dir5)
@@ -72,7 +72,7 @@ function delete_file() {
 
    COL7COUNT=${#column7[@]}
 
-    if [ $COL7COUNT -ge 3 ]; then
+    if [ $COL7COUNT -ge 5 ]; then
         DELETEFILE=${column7[$RANDOM % ${#column7[@]}]}
         column7=( "${column7[@]/$DELETEFILE}" )
         SUUSER=$(echo $DELETEFILE | cut -f1 -d:)
@@ -166,9 +166,9 @@ function generate_action() {
 
     if [[ "$ACTION" = "random" ]];
         then
-           echo "RANDOM"
-           ACTION=${ACTION[$RANDOM % ${#ACTION[@]}]}
-
+#           echo "RANDOM"
+           ACTION=${ACTION_LIST[$RANDOM % ${#ACTION_LIST[@]}]}
+           echo $ACTION
 
     fi
 
