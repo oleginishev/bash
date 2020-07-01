@@ -6,8 +6,8 @@ INTNUMBER=("1" "2" "3" "4" "5" "6" "7" "8" "9")
 GROUPNAME=("admin" "user" "balckuser" "downuser" "non-user" "ssluser" "piviuser" "mainuser" "vipuser")
 PERMISSION=("---" "--x" "-w-" "-wx" "r--" "r-x" "rw-" "rwx")
 DATE="$(date '+%Y%m%d')"
-DIR_TO_FILE="/data2/fsimage"
-FILE=fsimage_$DATE.csv
+DIR_TO_FILE="/first_dir/second_dir"
+FILE=filename_$DATE.csv
 
 function generate_path {
         for i in {1..5}
