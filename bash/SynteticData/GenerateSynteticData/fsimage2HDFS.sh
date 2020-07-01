@@ -3,7 +3,7 @@ HDFS_PATH="/opt/cloudera/parcels/CDH-6.3.1-1.cdh6.3.1.p0.1470567/bin"
 DIR_TO_FILE="/data2/fsimage"
 DATE="$(date '+%Y%m%d')"
 FILE=fsimage_$DATE.csv
-LOGSTASH=localhost:44442
+LOGSTASH=hostname:port
 SUUSER=hdfs
 HDFSPASS=""
 
